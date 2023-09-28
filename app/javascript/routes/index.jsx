@@ -6,6 +6,7 @@ export default (
   <Router>
     <Routes>
       <Route path="/" element={<ClosetsIndex />} />
+      <Route path="/closets" element={<ClosetsIndex />} />
     </Routes>
   </Router>
 );
