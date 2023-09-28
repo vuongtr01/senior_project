@@ -12,7 +12,7 @@ rbenv install 3.2.2
 ```
 3. Set ruby 3.2.2 global version
 ```
-rbenv global 3.0.3
+rbenv global 3.2.2
 ```
 Double check ruby global version:
 ```
@@ -59,7 +59,11 @@ rails db:create
 ```
 rails db:migrate
 ```
-6. Run application:
+6. Seeding data:
+```
+rails db:seed
+```
+7. Run application:
 * For quick start:
 ```
 bin/dev
