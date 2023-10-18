@@ -1,6 +1,5 @@
 class ClosetsController < ApplicationController
     def index
-        current_user = User.find(1)
         respond_to do |format|
             format.html do
                 gon.user = {
@@ -15,5 +14,9 @@ class ClosetsController < ApplicationController
             )
             end
         end
+    end
+
+    def show
+        @closets = Closet.all
     end
 end
