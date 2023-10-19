@@ -24,4 +24,18 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  private
+
+  def after_sign_in_path_for(resource)
+    stored_location = stored_location_for(resource)
+    if stored_location.present?
+      return stored_location
+    else
+      "/"
+    end
+  end
+
+  def after_sign_out_path_for(_)
+    "/users/sign_in"
+  end
 end

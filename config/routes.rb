@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'closets#index'
   resources :closets
-  resources :users, only[:show]
+  resources :users
 end
