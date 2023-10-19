@@ -42,14 +42,21 @@ const SignIn = () => {
             <Typography component="h1" variant="h5">
                 Sign in
             </Typography>
-            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <Box
+                component="form"
+                className='new_user'
+                action='/users/sign_in'
+                noValidate sx={{ mt: 1 }}
+                acceptCharset='UTF-8'
+                method='POST'
+            >
                 <TextField
                     margin="normal"
                     required
                     fullWidth
-                    id="email"
+                    id="user_email"
                     label="Email Address"
-                    name="email"
+                    name="user[email]"
                     autoComplete="email"
                     autoFocus
                 />
@@ -57,19 +64,21 @@ const SignIn = () => {
                     margin="normal"
                     required
                     fullWidth
-                    name="password"
+                    name="user[password]"
                     label="Password"
                     type="password"
-                    id="password"
+                    id="user_password"
                     autoComplete="current-password"
                 />
                 <FormControlLabel
-                    control={<Checkbox value="remember" color="primary" />}
+                    control={<Checkbox value="1" name="user[remember_me]" color="primary" id="user_remember_me"/>}
                     label="Remember me"
                 />
                 <Button
                     type="submit"
                     fullWidth
+                    name="commit"
+                    value="Log in"
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                 >
