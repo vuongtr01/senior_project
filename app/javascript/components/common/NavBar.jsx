@@ -10,6 +10,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';;
 import Container from '@mui/material/Container';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
 
 const NavBar = (props) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -33,6 +34,10 @@ const NavBar = (props) => {
         window.location.href = '/users/sign_in';});
   }
 
+  const handleNewClosetClick = () => {
+    console.log();
+  }
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -54,6 +59,15 @@ const NavBar = (props) => {
           >
             WolfPack
           </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <Button
+                key="new_closet"
+                onClick={handleNewClosetClick}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+                Add new closet
+            </Button>
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

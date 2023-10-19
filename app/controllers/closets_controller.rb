@@ -18,6 +18,12 @@ class ClosetsController < ApplicationController
         end
     end
 
+    def new
+    end
+
+    def create
+    end
+
     def show
         @closets = Closet.all
     end
