@@ -1,6 +1,7 @@
 class ClosetsController < ApplicationController
+    before_action :authenticate_user!
+
     def index
-        current_user = User.find(1)
         respond_to do |format|
             format.html do
                 gon.user = {
@@ -15,5 +16,9 @@ class ClosetsController < ApplicationController
             )
             end
         end
+    end
+
+    def show
+        @closets = Closet.all
     end
 end
