@@ -8,7 +8,6 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 
 const ListCloset = () => {
-    console.log(window.gon.user);
     const [closets, setClosets] = useState([]);
     const fetchClosets = async() => {
         const { data } = await axios({
@@ -28,14 +27,13 @@ const ListCloset = () => {
     useEffect(() => {
         fetchClosets();
       }, []);
-    console.log(closets);
     return (
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} justifyContent="center">
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
             {closets.map((d) => (
                 <Grid key={d.id} item xs={6} md={3}>
                     <Card sx={{ minWidth: 275 }}>
                         <CardContent>
-                            <ImageList sx={{ width: 300, height: 200 }} cols={1} rowHeight={164} justifyContent="center">
+                            <ImageList cols={1} rowHeight={164}>
                                 {itemData.map((item) => (
                                     <ImageListItem key={item.img}>
                                     <img

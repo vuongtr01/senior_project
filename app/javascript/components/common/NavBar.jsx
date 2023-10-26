@@ -10,9 +10,9 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';;
 import Container from '@mui/material/Container';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import Button from '@mui/material/Button';
 
 const NavBar = (props) => {
+  const { actionButton } = props;
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -32,10 +32,6 @@ const NavBar = (props) => {
         method: "DELETE",
       }).then((response) => {
         window.location.href = '/users/sign_in';});
-  }
-
-  const handleNewClosetClick = () => {
-    console.log();
   }
 
   return (
@@ -60,13 +56,7 @@ const NavBar = (props) => {
             WolfPack
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Button
-                key="new_closet"
-                onClick={handleNewClosetClick}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-                Add new closet
-            </Button>
+            {actionButton()}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
