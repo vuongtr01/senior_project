@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   root 'closets#index'
   resources :closets
   resources :users
+  resources :items
 end

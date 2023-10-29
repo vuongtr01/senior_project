@@ -1,0 +1,18 @@
+import React from "react";
+import Button from '@mui/material/Button';
+
+const AddNewItemButton = (props) => {
+    const { handleNewItemClick } = props;
+
+    return (
+        <Button
+                key="new_closet"
+                onClick={handleNewItemClick}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+                Add new item
+        </Button>
+    )
+};
+
+export default AddNewItemButton;

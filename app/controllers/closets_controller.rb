@@ -37,8 +37,8 @@ class ClosetsController < ApplicationController
     end
 
     def show
-        @closet = current_user.closets.find(id: params[:id])
-        gon.closet = {
+        @closet = current_user.closets.where(id: params[:id]).first
+        gon.closetInfo = {
             category: @closet.category,
             closetId: @closet.id,
             items: @closet.items.map do |i|
