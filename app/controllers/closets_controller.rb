@@ -56,6 +56,22 @@ class ClosetsController < ApplicationController
         }
     end
 
+    def destroy
+        json_data = { errors: [], closets: [] }
+        status = :ok
+        @closet = Closet.find(params[:id])
+        if @closet.items.destroy_all && @closet.destroy
+            json_data[:closets] = current_user.closets.as_json(
+                only: %i(id category),
+                methods: [:count_items ]
+            )
+        else
+            json_data[:errors] = new_closet.errors.full_messages
+            status = :unprocessable_entity
+        end
+        render(json: json_data, status: status)
+    end
+
     private
     def closet_params
         params.require(:closet).permit(

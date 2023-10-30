@@ -2,15 +2,15 @@ import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import withStyles from '@mui/styles/withStyles';
-import { SECONDARY_LIGHT_BLUE_COLOR, SECONDARY_DARK_BLUE_COLOR } from './Constants';
+import { LIGHT_RED_COLOR, DARK_RED_COLOR} from './Constants';
 
 const styles = () => ({
   root: {
-    backgroundColor: SECONDARY_LIGHT_BLUE_COLOR,
+    backgroundColor: LIGHT_RED_COLOR,
     color: '#fff',
     borderRadius: 5,
     '&:hover': {
-      backgroundColor: SECONDARY_DARK_BLUE_COLOR,
+      backgroundColor: DARK_RED_COLOR,
     },
     textTransform: 'none',
     fontSize: '0.9375rem',
@@ -19,7 +19,7 @@ const styles = () => ({
   },
 });
 
-const ActionButton = forwardRef((props, ref) => {
+const WarningButton = forwardRef((props, ref) => {
   const {
     classes,
     text,
@@ -42,14 +42,14 @@ const ActionButton = forwardRef((props, ref) => {
   );
 });
 
-ActionButton.propTypes = {
+WarningButton.propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   isValid: PropTypes.bool,
   text: PropTypes.string.isRequired,
 };
 
-ActionButton.defaultProps = {
+WarningButton.defaultProps = {
   isValid: true,
 };
 
-export default withStyles(styles)(ActionButton);
+export default withStyles(styles)(WarningButton);
