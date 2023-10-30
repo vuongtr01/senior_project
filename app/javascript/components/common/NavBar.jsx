@@ -63,7 +63,7 @@ const NavBar = (props) => {
         </Grid>
         <Grid item xs={6}>
           {actionButton && (
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <Box>
               {actionButton()}
             </Box>
           )}

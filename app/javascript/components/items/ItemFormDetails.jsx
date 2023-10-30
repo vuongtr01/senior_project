@@ -26,7 +26,6 @@ const styles = theme => ({
       marginTop: '25px',
     },
     labelTitle: {
-        lineHeight: '1.1',
         display: 'block',
         width: '100%',
         textAlign: 'left',
@@ -109,13 +108,13 @@ const ItemFormDetails = (props) => {
             >
                 <Grid item xs={12} md={10} className={classes.gridItem}>
                     <Paper>
-                        <Grid container className={classes.title}>
-                            <Grid item xs={9}>
+                        <Grid container className={classes.title} alignContent='center'>
+                            <Grid item xs={10}>
                                 <Typography variant="h1" className={classes.labelTitle}>
                                     {formTitle}
                                 </Typography>
                             </Grid>
-                            <Grid item xs={3}>
+                            <Grid item xs={2}>
                                 <SaveButtonGroup
                                     errors={errors}
                                     itemData={itemData}

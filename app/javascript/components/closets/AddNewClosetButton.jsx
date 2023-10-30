@@ -8,7 +8,6 @@ const AddNewClosetButton = (props) => {
         <Button
                 key="new_closet"
                 onClick={handleNewClosetClick}
-                sx={{ my: 2, color: 'white', display: 'block' }}
             >
                 Add new closet
         </Button>

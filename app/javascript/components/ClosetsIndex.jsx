@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import ListCloset from "./closets/ListClosets";
 import NavBar from "./common/NavBar";
 import AddNewClosetButton from "./closets/AddNewClosetButton";
@@ -24,16 +24,18 @@ const ClosetsIndex = () => {
         )
     }
     return (
-        <ThemeProvider theme={StandardTheme}>
-            <NavBar
-                actionButton={actionButtons}
-            />        
-            <ListCloset />
-            <AddNewClosetDialog
-                openDialog={openAddClosetDialog}
-                setOpenDialog={setOpenAddClosetDialog}
-            />
-        </ThemeProvider>
+        <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={StandardTheme}>
+                <NavBar
+                    actionButton={actionButtons}
+                />        
+                <ListCloset />
+                <AddNewClosetDialog
+                    openDialog={openAddClosetDialog}
+                    setOpenDialog={setOpenAddClosetDialog}
+                />
+            </ThemeProvider>
+        </StyledEngineProvider>
     );
 };
 

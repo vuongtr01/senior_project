@@ -78,10 +78,7 @@ const SaveButtonGroup = (props) => {
       };
     return (
         <Grid
-            spacing={2}
             container
-            justifyContent="flex-end"
-            alignItems="center"
         >
             <ActionButton
                 text="Save Item"

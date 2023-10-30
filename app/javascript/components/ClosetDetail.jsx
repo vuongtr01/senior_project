@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import StandardTheme from "./common/StandardTheme";
 import NavBar from "./common/NavBar";
 import AddNewItemButton from "./items/AddNewItemButton";
@@ -20,12 +20,14 @@ const ClosetsIndex = () => {
         )
     }
     return (
-        <ThemeProvider theme={StandardTheme}>
-            <NavBar
-                actionButton={actionButtons}
-            />
-            <ListItems />
-        </ThemeProvider>
+        <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={StandardTheme}>
+                <NavBar
+                    actionButton={actionButtons}
+                />
+                <ListItems />
+            </ThemeProvider>
+        </StyledEngineProvider>
     );
 };
 

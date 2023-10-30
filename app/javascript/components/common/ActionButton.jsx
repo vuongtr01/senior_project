@@ -6,7 +6,7 @@ import { SECONDARY_LIGHT_BLUE_COLOR, SECONDARY_DARK_BLUE_COLOR } from './Constan
 
 const styles = () => ({
   root: {
-    backgroundColor: SECONDARY_LIGHT_BLUE_COLOR,
+    backgroundColor: '#68a6de',
     color: '#fff',
     borderRadius: 5,
     '&:hover': {
