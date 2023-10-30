@@ -51,11 +51,12 @@ const ItemCard = (props) => {
     const handleDeleteItem = () => {
         const url = `/items/${item.id}`;
         const method = 'DELETE';
+        const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+        axios.defaults.headers.common['X-CSRF-Token'] = csrfToken;
 
         axios({
             url,
             method,
-            headers: Object.assign({ 'Content-Type': 'multipart/form-data' }, AxiosHeaders),
           }).then((res) => {
             deleteItem(item);
           }).catch(({ response }) => {

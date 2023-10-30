@@ -53,11 +53,12 @@ const SaveButtonGroup = (props) => {
             : '/items'
         );
         const method = itemId ? 'PUT' : 'POST';
+        const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+        axios.defaults.headers.common['X-CSRF-Token'] = csrfToken;
 
         axios({
             url,
             method,
-            headers: Object.assign({ 'Content-Type': 'multipart/form-data' }, AxiosHeaders),
             data,
           }).then((res) => {
             const redirectPath = `/closets/${res.data.closet_id}`

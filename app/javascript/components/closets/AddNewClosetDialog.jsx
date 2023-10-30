@@ -41,11 +41,12 @@ const AddNewClosetDialog = (props) => {
     const submiting = (data) => {
         const url = '/closets';
         const method = 'POST';
+        const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+        axios.defaults.headers.common['X-CSRF-Token'] = csrfToken;
 
         axios({
             url,
             method,
-            headers: Object.assign({ 'Content-Type': 'multipart/form-data' }, AxiosHeaders),
             data,
           }).then((res) => {
             window.location.href = `/closets/${res.data.id}`;

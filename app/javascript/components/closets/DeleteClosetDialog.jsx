@@ -17,11 +17,11 @@ const DeleteClosetDialog = (props) => {
     const handleDeleteCloset = () => {
         const url = `/closets/${closetId}`;
         const method = 'DELETE';
-
+        const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+        axios.defaults.headers.common['X-CSRF-Token'] = csrfToken;
         axios({
             url,
             method,
-            headers: Object.assign({ 'Content-Type': 'multipart/form-data' }, AxiosHeaders),
         }).then((res) => {
             setClosets(res.data.closets);
             setOpenDialog(false);
