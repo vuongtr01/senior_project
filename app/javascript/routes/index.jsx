@@ -4,6 +4,7 @@ import ClosetsIndex from "../components/ClosetsIndex";
 import SignIn from "../components/authentication/SignIn";
 import SignUp from "../components/authentication/SignUp";
 import ClosetDetail from "../components/ClosetDetail";
+import NewItem from "../components/items/NewItem";
 
 export default (
   <Router>
@@ -13,6 +14,8 @@ export default (
       <Route path="/users/sign_in" element={<SignIn />} />
       <Route path="/users/sign_up" element={<SignUp />} />
       <Route path="/closets/:closetId" element={<ClosetDetail />} />
+      <Route path="/items/new" element={<NewItem />}/>
+      <Route path="/closets/:closetId/items/new" element={<NewItem />}/>
     </Routes>
   </Router>
 );

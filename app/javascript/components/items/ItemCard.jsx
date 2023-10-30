@@ -1,5 +1,6 @@
 import * as React from 'react';
 import axios from 'axios';
+import moment from 'moment';
 import IconButton from '@mui/material/IconButton';
 import withStyles from '@mui/styles/withStyles';
 import Grid from '@mui/material/Grid';
@@ -10,6 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import { SECONDARY_DARK_BLUE_COLOR } from '../common/Constants';
 import AxiosHeaders from '../../helpers/AxiosHeaders';
+import { DATE_TIME_FORMAT } from '../common/Constants';
 
 const style = theme => ({
     image: {
@@ -39,8 +41,9 @@ const ItemCard = (props) => {
         name,
         amount,
         buy_date: buyDate,
-        expr_data: exprDate,
-        price
+        expr_date: exprDate,
+        price,
+        location,
     } = item;
 
     const handleDeleteItem = () => {
@@ -80,13 +83,16 @@ const ItemCard = (props) => {
                                 Amount: {amount}
                             </Typography>
                             <Typography variant="body2" gutterBottom>
-                                Price: {price ? price : "N/a"}
+                                Price: {price ? `$${price}` : "N/a"}
                             </Typography>
                             <Typography variant="body2" gutterBottom>
-                                Buy Date: {buyDate ? buyDate : "N/a"}
+                                Buy Date: {buyDate ? moment(buyDate).format(DATE_TIME_FORMAT) : "N/a"}
                             </Typography>
                             <Typography variant="body2" gutterBottom>
-                                Expired Date:  { exprDate ? exprDate : "N/a"}
+                                Expired Date:  { exprDate ? moment(exprDate).format(DATE_TIME_FORMAT): "N/a"}
+                            </Typography>
+                            <Typography variant="body2" gutterBottom>
+                               Location:  { location ? location : "N/a"}
                             </Typography>
                         </Grid>
                     </Grid>

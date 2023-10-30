@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import withStyles from '@mui/styles/withStyles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';;
-import Container from '@mui/material/Container';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import Grid from '@mui/material/Grid';
 
+const styles = theme => ({
+  container: {
+    padding: '16px 8px 16px 8px',
+  }
+})
 const NavBar = (props) => {
-  const { actionButton } = props;
+  const { classes, actionButton } = props;
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -36,8 +41,8 @@ const NavBar = (props) => {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+      <Grid container className={classes.container}>
+        <Grid item xs={3}>
           <Typography
             variant={"h6"}
             noWrap
@@ -55,15 +60,23 @@ const NavBar = (props) => {
           >
             WolfPack
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {actionButton()}
-          </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <AccountCircleIcon />
-              </IconButton>
-            </Tooltip>
+        </Grid>
+        <Grid item xs={6}>
+          {actionButton && (
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              {actionButton()}
+            </Box>
+          )}
+        </Grid>
+        <Grid item xs={3}>
+          <Grid container justifyContent='flex-end' alignItems='center'>
+            <Grid item>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <AccountCircleIcon />
+                </IconButton>
+              </Tooltip>
+            </Grid>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -84,10 +97,10 @@ const NavBar = (props) => {
                   <Typography textAlign="center">Logout</Typography>
                 </MenuItem>
             </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
+          </Grid>
+        </Grid>
+      </Grid>
     </AppBar>
   );
 }
-export default NavBar;
+export default withStyles(styles)(NavBar);

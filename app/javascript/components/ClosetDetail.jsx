@@ -6,17 +6,17 @@ import AddNewItemButton from "./items/AddNewItemButton";
 import ListItems from "./items/ListItems";
 
 const ClosetsIndex = () => {
+    const { closetId } = window.gon.closetInfo;
     const handleNewItemClick = () => {
-        console.log("click");
+        const redirectPath = `/closets/${closetId}/items/new`;
+        window.location.href = redirectPath;
     };
 
     const actionButtons = () => {
         return (
             <AddNewItemButton
-                handleNewClosetClick={handleNewItemClick}
-            >
-                Add new item
-            </AddNewItemButton>
+                handleNewItemClick={handleNewItemClick}
+            />
         )
     }
     return (
