@@ -28,10 +28,10 @@ class ClosetsController < ApplicationController
         json_data = { errors: [], id: nil }
         status = :ok
         if new_closet.save
-        json_data[:id] = new_closet.id
+            json_data[:id] = new_closet.id
         else
-        json_data[:errors] = new_closet.errors.full_messages
-        status = :unprocessable_entity
+            json_data[:errors] = new_closet.errors.full_messages
+            status = :unprocessable_entity
         end
         render(json: json_data, status: status)
     end

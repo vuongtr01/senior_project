@@ -22,7 +22,7 @@ const SaveButtonGroup = (props) => {
         price,
     } = itemData;
 
-    const {closetId, itemId }= window.gon.itemInfo;
+    const {closet_id: closetId, id: itemId }= window.gon.itemInfo;
     const isValid = _isEmpty(errors);
     const buildFormData = () => {
         const submitData = new FormData();

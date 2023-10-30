@@ -23,8 +23,6 @@ const ListItems = (props) => {
         setItems(newItemsList);
     }
 
-    console.log(items);
-
     return (
         <Grid
             container

@@ -46,6 +46,8 @@ const ItemCard = (props) => {
         location,
     } = item;
 
+    const { closetId } = window.gon.closetInfo;
+
     const handleDeleteItem = () => {
         const url = `/items/${item.id}`;
         const method = 'DELETE';
@@ -62,7 +64,10 @@ const ItemCard = (props) => {
             });
           });
     }
-    console.log(item);
+    const handleEditItem = () => {
+        const url = `/closets/${closetId}/items/${item.id}/edit`
+        window.location.href = url;
+    }
     return (
         <Paper
             className={classes.container}
@@ -114,7 +119,7 @@ const ItemCard = (props) => {
                                 size="small"
                                 tabIndex={-1}
                                 className={classes.optionalButton}
-                                onClick={handleDeleteItem}
+                                onClick={handleEditItem}
                             >
                                 <ModeEditOutlineIcon fontSize='medium' className={classes.editIcon}/>
                             </IconButton>

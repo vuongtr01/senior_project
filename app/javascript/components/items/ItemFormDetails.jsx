@@ -41,7 +41,16 @@ const styles = theme => ({
 
 const ItemFormDetails = (props) => {
     const { classes, formTitle, setValue } = props;
-    const itemInfo = window.gon;
+    const { itemInfo } = window.gon;
+    const {
+        name,
+        buy_date: buyDate,
+        expr_date:exprDate,
+        amount,
+        location,
+        price,
+        image,
+    } = itemInfo
     const [errors, setErrors] = useState({});
     const [attemptedSubmission, setAttemptedSubmission] = useState(false);
     const nameError = (
@@ -50,13 +59,13 @@ const ItemFormDetails = (props) => {
     );
     
     const [itemData, setItemData] = useState({
-        name: itemInfo.name || '',
-        buyDate: itemInfo.buyDate ? moment(itemInfo.buyDate) : null,
-        exprDate: itemInfo.exprDate ? moment(itemInfo.exprDate) : null,
-        amount: itemInfo.amount || 0,
-        location: itemInfo.location || '',
-        image: itemInfo.image || null,
-        price: itemInfo.price || null,
+        name: name || '',
+        buyDate: buyDate ? moment(buyDate) : null,
+        exprDate: exprDate ? moment(exprDate) : null,
+        amount: amount || 0,
+        location: location || '',
+        image: image || null,
+        price: price || null,
       });
     
     const validationSchemaPublish = Yup.object({
@@ -133,7 +142,7 @@ const ItemFormDetails = (props) => {
                             />
                             <TextFieldRow
                                 placeholder="Where is it now!!"
-                                value={itemData.name}
+                                value={itemData.location}
                                 questionTitle="Location"
                                 inputProps={{
                                 maxLength: 70,
@@ -142,7 +151,7 @@ const ItemFormDetails = (props) => {
                             />
                             <TextFieldRow
                                 placeholder="How much does it cost"
-                                value={itemData.name}
+                                value={itemData.price}
                                 questionTitle="Item Price"
                                 inputProps={{
                                 maxLength: 70,
