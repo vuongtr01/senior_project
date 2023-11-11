@@ -130,7 +130,7 @@ const StandardTheme = createTheme({
           backgroundColor: 'unset',
           padding: '0.28125rem 1.375rem',
           '&:hover': {
-            backgroundColor: '#f0f0f0',
+            backgroundColor: '#0427d4',
           },
         },
         outlined: {
