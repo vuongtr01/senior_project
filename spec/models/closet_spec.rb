@@ -32,4 +32,33 @@ RSpec.describe Closet, type: :model do
       end
     end
   end
+
+  describe "scope search" do
+    let(:closet1) { FactoryBot.create(:closet, category: "Book") }
+    let(:closet2) { FactoryBot.create(:closet, category: "Blog") }
+    let(:selected) {[]}
+    let(:key) { "B" }
+
+    before do
+      closet1
+      closet2
+    end
+
+    subject { Closet.search(key, selected) }
+
+    context "when selected params isn't present" do
+      it 'includes both closet1 and closet2' do
+        is_expected.to include closet1
+        is_expected.to include closet2
+      end
+    end
+
+    context "when selected params isn present" do
+      let(:selected) { [closet1.id] }
+      it 'includes closet2 only' do
+        is_expected.to include closet2
+        is_expected.not_to include closet1
+      end
+    end
+  end
 end

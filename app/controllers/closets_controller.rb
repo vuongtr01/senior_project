@@ -72,6 +72,18 @@ class ClosetsController < ApplicationController
         render(json: json_data, status: status)
     end
 
+    def autocomplete
+        result = []
+        if params[:key].present?
+            result = current_recruiter.closets
+              .search(params[:key])
+              .as_json(
+                only: %i(id fname lname email default_location),
+                methods: %i(fullname avatar_url integrated_calendar availability_json)
+              )
+          end
+    end
+
     private
     def closet_params
         params.require(:closet).permit(
