@@ -43,7 +43,7 @@ yarn --version
 git clone git@github.com:vuongtr01/senior_project.git
 cd senior_project
 ```
-2. Install gem:
+2. Install gem :
 ```
 bundle install
 ```
