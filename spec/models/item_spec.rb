@@ -63,21 +63,5 @@ RSpec.describe Item, type: :model do
         is_expected.not_to include item1
       end
     end
-
-    context "search within closet" do
-      let(:closet) { FactoryBot.create(:closet) }
-      let(:item3) { FactoryBot.create(:item, closet: closet, name: "Banana") }
-      let(:closet_id) { closet.id }
-
-      before do
-        item3
-      end
-
-      it 'includes item2 only' do
-        is_expected.to include item3
-        is_expected.not_to include item1
-        is_expected.not_to include item2
-      end
-    end
   end 
 end

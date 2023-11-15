@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import { useLocation } from 'react-router';
 import Grid from '@mui/material/Grid';
 import withStyles from '@mui/styles/withStyles';
 import Card from '@mui/material/Card';
@@ -25,9 +26,10 @@ const ListCloset = (props) => {
     const [closets, setClosets] = useState([]);
     const [openConfirmDeleteDialog, setOpenConfirmDeleteDialog] = useState(false);
     const [deletingClosetId, setDeletingClosetId] = useState(null);
+    const location = useLocation();
     const fetchClosets = async() => {
         const { data } = await axios({
-            url: `/closets`,
+            url:[location.pathname, location.search].join(''),
             headers: { 'Accept': 'application/json' }
           });
         setClosets(data);

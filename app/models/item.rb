@@ -16,14 +16,12 @@ class Item < ApplicationRecord
     where.not(name: nil)
   }
 
-  scope :search, ->(key, selected = [], closet_id = nil) do
+  scope :search, ->(key, selected = []) do
     return if key.blank?
     search = valid_search.search_by_name(key)
+    binding.pry
     if selected.present?
       search = search.where.not(id: selected)
-    end
-    if closet_id.present?
-      search = search.where(closet_id: closet_id)
     end
     search
   end

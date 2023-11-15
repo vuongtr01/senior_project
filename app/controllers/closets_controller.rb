@@ -11,10 +11,17 @@ class ClosetsController < ApplicationController
                 }
             end
             format.json do
-              render json: current_user.closets.as_json(
-                only: %i(id category),
-                methods: [:count_items ]
-            )
+                if params[:search].present?
+                    render json: current_user.closets.search(params[:search]).as_json(
+                        only: %i(id category),
+                        methods: [:count_items ]
+                    )
+                else
+                    render json: current_user.closets.as_json(
+                        only: %i(id category),
+                        methods: [:count_items ]
+                    )
+                end
             end
         end
     end

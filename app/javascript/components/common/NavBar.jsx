@@ -10,6 +10,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';;
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Grid from '@mui/material/Grid';
+import SearchBar from "./SearchBar";
 
 const styles = theme => ({
   container: {
@@ -42,7 +43,7 @@ const NavBar = (props) => {
   return (
     <AppBar position="static">
       <Grid container className={classes.container}>
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           <Typography
             variant={"h6"}
             noWrap
@@ -61,12 +62,17 @@ const NavBar = (props) => {
             WolfPack
           </Typography>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={3}>
           {actionButton && (
             <Box>
               {actionButton()}
             </Box>
           )}
+        </Grid>
+        <Grid item xs={4}>
+          <SearchBar
+            placeholder="search"
+          />
         </Grid>
         <Grid item xs={3}>
           <Grid container justifyContent='flex-end' alignItems='center'>
