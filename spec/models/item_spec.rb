@@ -40,14 +40,13 @@ RSpec.describe Item, type: :model do
     let(:item2) { FactoryBot.create(:item, name: "Blog") }
     let(:selected) {[]}
     let(:key) { "B" }
-    let(:closet_id) { nil }
 
     before do
       item1
       item2
     end
 
-    subject { Item.search(key, selected, closet_id) }
+    subject { Item.search(key, selected) }
 
     context "when selected params isn't present" do
       it 'includes both item1 and item2' do

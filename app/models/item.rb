@@ -19,7 +19,6 @@ class Item < ApplicationRecord
   scope :search, ->(key, selected = []) do
     return if key.blank?
     search = valid_search.search_by_name(key)
-    binding.pry
     if selected.present?
       search = search.where.not(id: selected)
     end
