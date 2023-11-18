@@ -6,6 +6,38 @@ class ItemsController < ApplicationController
         }
     end
 
+    def index
+        if params[:search].present?
+            gon.items = current_user.items
+                .search(params[:search])
+                .as_json(only: [
+                :closet_id,
+                :id,
+                :name,
+                :location,
+                :buy_date,
+                :expr_date,
+                :amount,
+                :image,
+                :price 
+            ])
+        else
+            gon.items = current_user.items.map do |i|
+                i.as_json(only: [
+                    :closet_id,
+                    :id,
+                    :name,
+                    :location,
+                    :buy_date,
+                    :expr_date,
+                    :amount,
+                    :image,
+                    :price 
+                ])
+            end
+        end
+    end
+
     def edit
         @item = Item.find(params[:id])
         gon.itemInfo = @item.json_data
@@ -48,7 +80,6 @@ class ItemsController < ApplicationController
         end
         render(json: json_data, status: status)
     end
-
     private
     def item_params
         params.require(:item).permit(

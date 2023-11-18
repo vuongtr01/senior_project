@@ -46,7 +46,7 @@ const ItemCard = (props) => {
         location,
     } = item;
 
-    const { closetId } = window.gon.closetInfo;
+    const closetId = window.gon.closetInfo ? window.gon.closetInfo.closetId : null;
 
     const handleDeleteItem = () => {
         const url = `/items/${item.id}`;
@@ -66,7 +66,7 @@ const ItemCard = (props) => {
           });
     }
     const handleEditItem = () => {
-        const url = `/closets/${closetId}/items/${item.id}/edit`
+        const url = closetId ? `/closets/${closetId}/items/${item.id}/edit` : `/closets/items/${item.id}/edit`
         window.location.href = url;
     }
     return (

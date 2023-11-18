@@ -48,19 +48,20 @@ class ClosetsController < ApplicationController
         gon.closetInfo = {
             category: @closet.category,
             closetId: @closet.id,
-            items: @closet.items.map do |i|
-                i.as_json(only: [
-                    :id,
-                    :name,
-                    :location,
-                    :buy_date,
-                    :expr_date,
-                    :amount,
-                    :image,
-                    :price 
-                ])
-            end
         }
+        gon.items = @closet.items.map do |i|
+            i.as_json(only: [
+                :closet_id,
+                :id,
+                :name,
+                :location,
+                :buy_date,
+                :expr_date,
+                :amount,
+                :image,
+                :price 
+            ])
+        end
     end
 
     def destroy

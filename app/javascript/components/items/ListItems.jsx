@@ -17,7 +17,7 @@ const styles = theme => ({
 
 const ListItems = (props) => {
     const { classes } = props;
-    const [items, setItems] = useState(window.gon.closetInfo.items);
+    const [items, setItems] = useState(window.gon.items);
     const deleteItem = (it) => {
         const newItemsList = items.filter(i => i.id != it.id);
         setItems(newItemsList);

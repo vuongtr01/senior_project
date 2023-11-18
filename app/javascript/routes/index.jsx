@@ -6,6 +6,7 @@ import SignUp from "../components/authentication/SignUp";
 import ClosetDetail from "../components/ClosetDetail";
 import NewItem from "../components/items/NewItem";
 import EditItem from "../components/items/EditItem";
+import ItemsIndex from "../components/ItemsIndex";
 
 export default (
   <Router>
@@ -18,6 +19,7 @@ export default (
       <Route path="/items/new" element={<NewItem />}/>
       <Route path="/closets/:closet_id/items/new" element={<NewItem />}/>
       <Route path="/closets/:closet_id/items/:id/edit" element={<EditItem/>} />
+      <Route path="/items" element={<ItemsIndex />} />
     </Routes>
   </Router>
 );
