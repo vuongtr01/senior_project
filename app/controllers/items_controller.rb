@@ -1,8 +1,13 @@
 class ItemsController < ApplicationController
     before_action :authenticate_user!
     def new
+        closet = params[:closet_id] ? current_user.closets.find(params[:closet_id]) : nil
         gon.itemInfo = {
-            closet_id: params[:closet_id]
+            closet: closet ? {
+                id: closet.id,
+                value: closet.category,
+                label: closet.category
+            } : nil
         }
     end
 

@@ -20,15 +20,16 @@ const SaveButtonGroup = (props) => {
         amount,
         image,
         price,
+        closet,
     } = itemData;
 
-    const {closet_id: closetId, id: itemId }= window.gon.itemInfo;
+    const { id: itemId }= window.gon.itemInfo;
     const isValid = _isEmpty(errors);
     const buildFormData = () => {
         const submitData = new FormData();
         submitData.append('item[name]', name);
         submitData.append('item[amount]', amount);
-        submitData.append('item[closet_id]', closetId);
+        submitData.append('item[closet_id]', closet.id);
         if (buyDate) {
             submitData.append('item[buy_date]', buyDate.toISOString());
         }

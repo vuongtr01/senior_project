@@ -18,7 +18,11 @@ RSpec.describe Item, type: :model do
         "amount": item.amount,
         "image": item.image,
         "price": item.price,
-        "closet_id": closet.id,
+        "closet": {
+          "id": closet.id,
+          "value": closet.category,
+          "label": closet.category,
+        },
       }
     end
 

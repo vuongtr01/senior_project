@@ -8,7 +8,7 @@ import ListItems from "./items/ListItems";
 const ItemsIndex = () => {
     const closetId = window.gon.closetInfo ? window.gon.closetInfo.closetId : null;
     const handleNewItemClick = () => {
-        const redirectPath = closetId ? `/closets/${closetId}/items/new` : `/closets/items/new`;
+        const redirectPath = closetId ? `/closets/${closetId}/items/new` : `/items/new`;
         window.location.href = redirectPath;
     };
 

@@ -83,13 +83,13 @@ class ClosetsController < ApplicationController
     def autocomplete
         result = []
         if params[:key].present?
-            result = current_recruiter.closets
+            result = current_user.closets
               .search(params[:key])
               .as_json(
-                only: %i(id fname lname email default_location),
-                methods: %i(fullname avatar_url integrated_calendar availability_json)
+                only: %i(id category)
               )
-          end
+        end
+        render json: result
     end
 
     private

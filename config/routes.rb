@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   root 'closets#index'
   resources :closets do
     resources :items
+    collection do
+      get :autocomplete
+    end
   end
 
   resources :users

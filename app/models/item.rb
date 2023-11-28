@@ -26,7 +26,7 @@ class Item < ApplicationRecord
   end
 
   def json_data
-    self.as_json(only: [
+    as_json(only: [
       :id,
       :name,
       :location,
@@ -34,8 +34,13 @@ class Item < ApplicationRecord
       :expr_date,
       :amount,
       :image,
-      :price,
-      :closet_id,
-    ])
+      :price
+    ]).merge({
+      'closet' => {
+        'id' => closet.id,
+        'value' => closet.category,
+        'label' => closet.category,
+      }
+    })
   end
 end

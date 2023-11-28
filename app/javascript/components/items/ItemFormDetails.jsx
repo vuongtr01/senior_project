@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import TextFieldRow from "../common/TextFieldRow";
 import DateTimePickers from "../common/DateTimePickers";
 import ItemAmountRow from "./ItemAmountRow";
+import ClosetRows from "../common/ClosetRows";
 import SaveButtonGroup from "./SaveButtonGroup";
 import { YupError, YupErrorMessage } from "../common/YupErrorProcessing";
 
@@ -49,6 +50,7 @@ const ItemFormDetails = (props) => {
         location,
         price,
         image,
+        closet
     } = itemInfo
     const [errors, setErrors] = useState({});
     const [attemptedSubmission, setAttemptedSubmission] = useState(false);
@@ -63,10 +65,11 @@ const ItemFormDetails = (props) => {
         exprDate: exprDate ? moment(exprDate) : null,
         amount: amount || 0,
         location: location || '',
-        image: image || null,
-        price: price || null,
+        image: image || '',
+        price: price || '',
+        closet: closet || null,
       });
-    
+
     const validationSchemaPublish = Yup.object({
         itemData: Yup.object({
           name: Yup.string().required('Enter item name'),
@@ -134,6 +137,10 @@ const ItemFormDetails = (props) => {
                                 setValue={value => handleItemDataChange(value, 'name')}
                                 error={nameError}
                                 helperText={nameError && YupErrorMessage(errors, 'itemData.name')}
+                            />
+                            <ClosetRows
+                                value={itemData.closet}
+                                setValue={value => handleItemDataChange(value, 'closet')}
                             />
                             <DateTimePickers
                                 time={{ buy: itemData.buyDate, expr: itemData.exprDate }}
