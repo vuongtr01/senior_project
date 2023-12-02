@@ -5,9 +5,9 @@ class Closet < ApplicationRecord
 
   PERMITTED_ATTRS = [
     :id, :category, :user_id,
-    item_attributes: [:id, :name, :buy_date, :expr_date, :amount, :location, :image, :price],
+    items_attributes: [:id, :name, :buy_date, :expr_date, :amount, :location, :image, :price],
   ]
-
+  accepts_nested_attributes_for :items
   pg_search_scope :search_by_category,
   against: :category,
   using: {

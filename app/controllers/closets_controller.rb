@@ -43,14 +43,30 @@ class ClosetsController < ApplicationController
         render(json: json_data, status: status)
     end
 
+    def update
+        closet = current_user.closets.find(params[:closet][:id])
+        json_data = { errors: [], closet_id: nil }
+        status = :ok
+        if closet.update(closet_params)
+            json_data[:closet_id] = closet.id
+        else
+            json_data[:errors] = closet.errors.full_messages
+            status = :unprocessable_entity
+        end
+        render(json: json_data, status: status)
+    end
+    
+
     def show
-        @closet = current_user.closets.where(id: params[:id]).first
+        @closet = current_user.closets.find(params[:id])
         gon.closetInfo = {
             category: @closet.category,
             closetId: @closet.id,
         }
-        gon.items = @closet.items.map do |i|
-            i.as_json(only: [
+        if params[:search].present?
+            gon.items = @closet.items
+                .search(params[:search])
+                .as_json(only: [
                 :closet_id,
                 :id,
                 :name,
@@ -61,6 +77,20 @@ class ClosetsController < ApplicationController
                 :image,
                 :price 
             ])
+        else
+            gon.items = @closet.items.map do |i|
+                i.as_json(only: [
+                    :closet_id,
+                    :id,
+                    :name,
+                    :location,
+                    :buy_date,
+                    :expr_date,
+                    :amount,
+                    :image,
+                    :price 
+                ])
+            end
         end
     end
 

@@ -66,7 +66,7 @@ const ItemCard = (props) => {
           });
     }
     const handleEditItem = () => {
-        const url = closetId ? `/closets/${closetId}/items/${item.id}/edit` : `/closets/items/${item.id}/edit`
+        const url =`/items/${item.id}/edit`
         window.location.href = url;
     }
     return (

@@ -19,6 +19,7 @@ export default (
       <Route path="/items/new" element={<NewItem />}/>
       <Route path="/closets/:closet_id/items/new" element={<NewItem />}/>
       <Route path="/closets/:closet_id/items/:id/edit" element={<EditItem/>} />
+      <Route path="/items/:id/edit" element={<EditItem/>} />
       <Route path="/items" element={<ItemsIndex />} />
     </Routes>
   </Router>

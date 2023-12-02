@@ -49,7 +49,7 @@ const SearchBar = (props) => {
             Object.keys(parameters).map(k => `${k}=${parameters[k]}`).join('&'),
         ].join('?');
         window.location.href = newPath;
-    }
+    }   
     const handleChangeSearch = (e) => {
         const { value } = e.target;
         if (e.keyCode === 13 && value !== search) {

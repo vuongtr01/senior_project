@@ -10,6 +10,10 @@ import _isNull from 'lodash/isNull';
 import AxiosHeaders from '../../helpers/AxiosHeaders';
 
 const styles = theme => ({
+  textField: {
+    width: '100%',
+    padding: '0px 16px',
+  },
   helperText: {
     paddingLeft: '8px',
     color: orange[300],
@@ -22,7 +26,6 @@ const ClosetAutocomplete = (props) => {
     classes,
     value,
     setValue,
-    availableOptions,
   } = props;
   const [options, setOptions] = useState([]);
   const [inputValue, setInputValue] = useState(value ? value.label : '');
@@ -74,6 +77,7 @@ const ClosetAutocomplete = (props) => {
       renderInput={params => (
         <TextField
           {...params}
+          className={classes.textField}
           variant="outlined"
           onChange={handleInputChange}
           InputProps={{
