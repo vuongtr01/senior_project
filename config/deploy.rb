@@ -5,7 +5,7 @@ set :repo_url,        'git@github.com:vuongtr01/senior_project.git'
 set :application,     'wolfpack'
 
 set :rbenv_type, :user 
-set :rbenv_ruby,      '3.0.2'
+set :rbenv_ruby,      '3.2.2'
 # set :rbenv_ruby_dir,  '/home/ubuntu/.rbenv/versions/3.0.2'
 set :default_env, { path: "~/.rbenv/shims:~/.rbenv/bin:$PATH" }
 
