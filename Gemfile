@@ -14,6 +14,14 @@ gem "pg", "~> 1.1"
 
 gem 'pg_search'
 
+# Deployment
+gem "capistrano"
+gem "capistrano3-puma"
+gem "capistrano-rails", require: false
+gem "capistrano-bundler", require: false
+gem "capistrano-rvm"
+gem "capistrano-rbenv"
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
