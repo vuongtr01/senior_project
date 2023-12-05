@@ -3,7 +3,7 @@ import withStyles from '@mui/styles/withStyles';
 import Grid from '@mui/material/Grid';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
-import ClosetAutoComplete from './ClosetAutoComplete';
+import ClosetAutocomplete from './ClosetAutocomplete';
 
 const styles = theme => ({
   textField: {
@@ -34,7 +34,7 @@ const ClosetRow = (props) => {
         <Typography variant="h4" className={classes.formQuestionTitle}>Closet</Typography>
       </Grid>
       <Grid item sm={7} xs={12} align="left">
-        <ClosetAutoComplete
+        <ClosetAutocomplete
           value={value}
           setValue={setValue}
         />
