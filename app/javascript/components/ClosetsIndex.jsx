@@ -16,21 +16,12 @@ const ClosetsIndex = () => {
         setOpenAddClosetDialog(true);
     };
 
-    const handleAllItemClick = () => {
-        window.location.href = '/items';
-    }
-
     const actionButtons = () => {
         return (
             <Grid container>
                 <Grid item xs={6}>
                     <AddNewClosetButton
                         handleNewClosetClick={handleNewClosetClick}
-                    />
-                </Grid>
-                <Grid item xs={6}>
-                    <AllItemButton
-                        handleAllItemClick={handleAllItemClick}
                     />
                 </Grid>
             </Grid>
@@ -40,7 +31,7 @@ const ClosetsIndex = () => {
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={StandardTheme}>
                 <NavBar
-                    actionButton={actionButtons}
+                    // actionButton={actionButtons}
                 />        
                 <ListCloset />
                 <AddNewClosetDialog

@@ -41,7 +41,7 @@ const NavBar = (props) => {
   }
 
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Grid container className={classes.container}>
         <Grid item xs={2}>
           <Typography
@@ -59,22 +59,25 @@ const NavBar = (props) => {
               textDecoration: 'none',
             }}
           >
-            WolfPack
+            <img src="https://i.imgur.com/fHltqt7.png" alt="logo" height={80} />
+            <Box sx={{display: {xs: "none", md: 'flex'}}}>
+              LifeList
+            </Box>
           </Typography>
         </Grid>
-        <Grid item xs={3}>
+        {/* <Grid item xs={3}>
           {actionButton && (
             <Box>
               {actionButton()}
             </Box>
           )}
-        </Grid>
-        <Grid item xs={4}>
+        </Grid> */}
+        <Grid item xs={8} pt="2%">
           <SearchBar
             placeholder="search"
           />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2} pr="20px">
           <Grid container justifyContent='flex-end' alignItems='center'>
             <Grid item>
               <Tooltip title="Open settings">

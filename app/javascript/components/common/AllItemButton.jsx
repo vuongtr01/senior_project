@@ -5,11 +5,11 @@ const AllItemButton = (props) => {
     const { handleAllItemClick } = props;
 
     return (
-        <Button
+        <Button variant="contained" style={{maxWidth: '100%', maxHeight: '50px', minWidth: '75%', minHeight: '50px'}}
                 key="all_items"
                 onClick={handleAllItemClick}
             >
-                All Items
+                VIEW ALL ITEMS
         </Button>
     )
 };

@@ -12,6 +12,7 @@ const styles = () => ({
     search: {
         border: `1px solid ${TABLE_ROW_CAPTION_COLOR}`,
         position: 'relative',
+        marginLeft: "20px",
         marginRight: '8px',
         borderRadius: "8px",
         backgroundColor: TABLE_ROW_CAPTION_COLOR,
@@ -29,6 +30,7 @@ const styles = () => ({
       },
       inputRoot: {
         color: '#171a1f',
+        width: '100%',
       },
       inputInput: {
         padding: "8px 8px 8px 0px",

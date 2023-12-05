@@ -36,9 +36,10 @@ const SignIn = () => {
             alignItems: 'center',
             }}
         >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                <LockOutlinedIcon />
-            </Avatar>
+            <Box>
+                {/* <LockOutlinedIcon /> */}
+                <img src="https://i.imgur.com/fHltqt7.png" alt="logo" height={80} />
+            </Box>
             <Typography component="h1" variant="h5">
                 Sign in
             </Typography>

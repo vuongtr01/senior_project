@@ -11,6 +11,22 @@ import ImageListItem from '@mui/material/ImageListItem';
 import WarningButton from "../common/WarningButton";
 import ActionButton from "../common/ActionButton";
 import DeleteClosetDialog from "./DeleteClosetDialog";
+import CardMedia from '@mui/material/CardMedia';
+import CssBaseline from '@mui/material/CssBaseline';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Container from '@mui/material/Container';
+import Link from '@mui/material/Link';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Grow from '@mui/material/Grow';
+import AllItemButton from '../common/AllItemButton';
+import AddNewClosetButton from "./AddNewClosetButton";
+import AddNewClosetDialog from "./AddNewClosetDialog";
+
+const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+
+const defaultTheme = createTheme();
 
 const styles = theme => ({
     actionButton: {
@@ -25,6 +41,7 @@ const ListCloset = (props) => {
     const { classes } = props;
     const [closets, setClosets] = useState([]);
     const [openConfirmDeleteDialog, setOpenConfirmDeleteDialog] = useState(false);
+    const [openAddClosetDialog, setOpenAddClosetDialog] = useState(false);
     const [deletingClosetId, setDeletingClosetId] = useState(null);
     const location = useLocation();
     const fetchClosets = async() => {
@@ -42,6 +59,14 @@ const ListCloset = (props) => {
         },
       ];
 
+    const handleAllItemClick = () => {
+        window.location.href = '/items';
+    }
+
+    const handleNewClosetClick = () => {
+      setOpenAddClosetDialog(true);
+  };
+
     const handleDeleteCloset = (closetId) => {
         console.log(closetId);
         setDeletingClosetId(closetId);
@@ -56,33 +81,68 @@ const ListCloset = (props) => {
     useEffect(() => {
         fetchClosets();
       }, []);
-    return (
-        <>
-            <Grid className={classes.container} container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                {closets.map((d) => (
-                    <Grid key={d.id} item xs={12} md={3}>
-                        <Card sx={{ minWidth: 275 }}>
-                            <CardContent>
-                                <ImageList cols={1} rowHeight={164}>
-                                    {itemData.map((item) => (
-                                        <ImageListItem key={item.img}>
-                                        <img
-                                            srcSet={`${item.img}?w=164&h=105&fit=crop&auto=format&dpr=2 2x`}
-                                            src={`${item.img}?w=164&h=105&fit=crop&auto=format`}
-                                            alt={item.title}
-                                            loading="lazy"
-                                            href = {`/id/closets/${item.title}`}
-                                        />
-                                        </ImageListItem>
-                                    ))}
-                                </ImageList>
-                                <Typography variant="h5" component="div" align="center">
-                                    {d.category}
-                                </Typography>
-                                <Typography variant="body2" align="center">
-                                    {d.count_items} Items
-                                </Typography>
-                                <Grid container justifyContent='center' alignItems='center'>
+      return (
+        <ThemeProvider theme={defaultTheme}>
+          <CssBaseline />
+          <main>
+            {/* Hero unit */}
+            <Box
+              sx={{
+                bgcolor: 'background.paper',
+                pt: 8,
+                pb: 6,
+              }}
+            >
+              <Container maxWidth="sm" align = "center">
+                <Typography
+                  component="h1"
+                  variant="h2"
+                  align="center"
+                  color="text.primary"
+                  gutterBottom
+                >
+                  My Closets
+                </Typography>
+                <Typography
+                  component="h5"
+                  variant="h6"
+                  align="center"
+                  color="text.primary"
+                  gutterBottom
+                >
+                  or...
+                </Typography>
+                {/* <Button variant="contained" style={{maxWidth: '100%', maxHeight: '50px', minWidth: '75%', minHeight: '50px'}}>View Full Inventory</Button> */}
+                <AllItemButton
+                        handleAllItemClick={handleAllItemClick}
+                    />
+                
+              </Container>
+            </Box>
+            <Container sx={{ py: 5, bgcolor: 'background.paper' }} maxWidth="false">
+              {/* End hero unit */}
+                {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 3, md: 4 }}> */}
+                <Grid container sx={{pt: 1, pb: 4}} justifyContent="center">
+                      {closets.map((d) => (
+                      <Card item
+                        sx={{ height: '150%', display: 'flex', flexDirection: 'column', padding: "2.5%" }}
+                      >
+                        <CardMedia
+                          component="div"
+                          sx={{
+                            // 16:9
+                            pt: '56.25%',
+                          }}
+                          image="https://source.unsplash.com/random?wallpapers"
+                        />
+                        <CardContent sx={{ flexGrow: 1}}>
+                          <Typography gutterBottom variant="h5" component="div" align="center">
+                            {d.category}
+                          </Typography>
+                          <Typography variant = "h6" align="center" marginBottom="10px">
+                            {d.count_items} Items
+                          </Typography>
+                          <Grid container justifyContent='center' alignItems='center'>
                                     <Grid item className={classes.actionButton}>
                                         <WarningButton
                                             size="small"
@@ -93,24 +153,46 @@ const ListCloset = (props) => {
                                     <Grid item className={classes.actionButton}>
                                         <ActionButton
                                             size="small"
-                                            text="Detail"
+                                            text="Details"
                                             onClick={() => handleClosetDetailClick(d.id)}
                                         />
                                     </Grid>
-                                </Grid>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                ))}
-            </Grid>
-            <DeleteClosetDialog
-                openDialog={openConfirmDeleteDialog}
-                setOpenDialog={setOpenConfirmDeleteDialog}
-                closetId={deletingClosetId}
-                setClosets={setClosets}
+                          </Grid>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </Grid>
+                  <Box align='center'>
+                      <AddNewClosetButton
+                          handleNewClosetClick={handleNewClosetClick}
+                      />
+                      <AddNewClosetDialog
+                      openDialog={openAddClosetDialog}
+                      setOpenDialog={setOpenAddClosetDialog}
+                      />
+                      <DeleteClosetDialog
+                        openDialog={openConfirmDeleteDialog}
+                        setOpenDialog={setOpenConfirmDeleteDialog}
+                        closetId={deletingClosetId}
+                        setClosets={setClosets}
             />
-        </>
-    );
+                    </Box>
+            </Container>
+          </main>
+          {/* Footer */}
+          <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
+            <Typography
+              variant="subtitle1"
+              align="center"
+              color="text.secondary"
+              component="p"
+            >
+              Project LifeList
+            </Typography>
+          </Box>
+          {/* End footer */}
+        </ThemeProvider>
+      );
 };
 
 export default withStyles(styles)(ListCloset);
