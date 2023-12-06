@@ -41,7 +41,7 @@ set :puma_systemctl_user, :system
 # set :keep_releases, 5
 
 ## Linked Files & Directories (Default None):
-set :linked_files, %w(config/credentials/production.key)
+# set :linked_files, %w(config/credentials/production.key)
 # set :linked_files, %w{config/database.yml}
 # set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
@@ -71,15 +71,15 @@ namespace :deploy do
     end
   end
 
-  namespace :check do
-    before :linked_files, :set_master_key do
-      on roles(:app), in: :sequence, wait: 10 do
-        unless test("[ -f #{shared_path}/config/master.key ]")
-          upload! 'config/master.key', "#{shared_path}/config/master.key"
-        end
-      end
-    end
-  end
+  # namespace :check do
+  #   before :linked_files, :set_master_key do
+  #     on roles(:app), in: :sequence, wait: 10 do
+  #       unless test("[ -f #{shared_path}/config/master.key ]")
+  #         upload! 'config/master.key', "#{shared_path}/config/master.key"
+  #       end
+  #     end
+  #   end
+  # end
 
   desc 'Initial Deploy'
   task :initial do
