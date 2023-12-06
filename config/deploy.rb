@@ -42,7 +42,7 @@ set :puma_systemctl_user, :system
 # set :keep_releases, 5
 
 ## Linked Files & Directories (Default None):
-set :linked_files, %w(config/database.yml config/application.yml config/puma.rb config/master.key)
+set :linked_files, %w(config/puma.rb config/master.key)
 set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads)
 # set :linked_files, %w{config/database.yml}
 # set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
