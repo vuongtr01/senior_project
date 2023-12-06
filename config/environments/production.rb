@@ -21,6 +21,7 @@ Rails.application.configure do
   config.require_master_key = false
   config.read_encrypted_secrets = false
   config.secret_key_base = '<%= ENV["SECRET_KEY_BASE"] %>'
+  config.active_support.key_generator_hash_digest_class = OpenSSL::Digest::SHA1
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
