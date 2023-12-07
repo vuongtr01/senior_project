@@ -87,9 +87,6 @@ const SignIn = () => {
                 </Button>
                 <Grid container>
                     <Grid item xs>
-                        <Link href="/users/password/new" variant="body2">
-                            Forgot password?
-                        </Link>
                     </Grid>
                     <Grid item>
                         <Link href="/users/sign_up" variant="body2">
