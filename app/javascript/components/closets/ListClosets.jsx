@@ -84,7 +84,7 @@ const ListCloset = (props) => {
       return (
         <ThemeProvider theme={defaultTheme}>
           <CssBaseline />
-          <main>
+          <>
             {/* Hero unit */}
             <Box
               sx={{
@@ -114,83 +114,88 @@ const ListCloset = (props) => {
                 </Typography>
                 {/* <Button variant="contained" style={{maxWidth: '100%', maxHeight: '50px', minWidth: '75%', minHeight: '50px'}}>View Full Inventory</Button> */}
                 <AllItemButton
-                        handleAllItemClick={handleAllItemClick}
-                    />
-                
+                  handleAllItemClick={handleAllItemClick}
+                />
               </Container>
             </Box>
             <Container sx={{ py: 5, bgcolor: 'background.paper' }} maxWidth="false">
               {/* End hero unit */}
                 {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 3, md: 4 }}> */}
-                <Grid container sx={{pt: 1, pb: 4}} justifyContent="center">
-                      {closets.map((d) => (
-                      <Card item
-                        sx={{ height: '150%', display: 'flex', flexDirection: 'column', padding: "2.5%" }}
-                      >
-                        <CardMedia
-                          component="div"
-                          sx={{
-                            // 16:9
-                            pt: '56.25%',
-                          }}
-                          image="https://source.unsplash.com/random?wallpapers"
-                        />
-                        <CardContent sx={{ flexGrow: 1}}>
-                          <Typography gutterBottom variant="h5" component="div" align="center">
-                            {d.category}
-                          </Typography>
-                          <Typography variant = "h6" align="center" marginBottom="10px">
-                            {d.count_items} Items
-                          </Typography>
-                          <Grid container justifyContent='center' alignItems='center'>
-                                    <Grid item className={classes.actionButton}>
-                                        <WarningButton
-                                            size="small"
-                                            text="Delete"
-                                            onClick={() => handleDeleteCloset(d.id)}   
-                                        />
-                                    </Grid>
-                                    <Grid item className={classes.actionButton}>
-                                        <ActionButton
-                                            size="small"
-                                            text="Details"
-                                            onClick={() => handleClosetDetailClick(d.id)}
-                                        />
-                                    </Grid>
-                          </Grid>
-                        </CardContent>
-                      </Card>
+                <Grid container direction="column" justifyContent="center" alignItems="center">
+                  <Grid item container className={classes.container} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    {closets.map((d) => (
+                      <Grid key={d.id} item xs={12} md={3}>
+                        <Card
+                          key={d.id}
+                        >
+                          <CardMedia
+                            component="div"
+                            sx={{
+                              // 16:9
+                              pt: '56.25%',
+                            }}
+                            image="https://source.unsplash.com/random?wallpapers"
+                          />
+                          <CardContent sx={{ flexGrow: 1}}>
+                            <Typography gutterBottom variant="h5" component="div" align="center">
+                              {d.category}
+                            </Typography>
+                            <Typography variant = "h6" align="center" marginBottom="10px">
+                              {d.count_items} Items
+                            </Typography>
+                            <Grid container justifyContent='center' alignItems='center'>
+                                      <Grid item className={classes.actionButton}>
+                                          <WarningButton
+                                              size="small"
+                                              text="Delete"
+                                              onClick={() => handleDeleteCloset(d.id)}   
+                                          />
+                                      </Grid>
+                                      <Grid item className={classes.actionButton}>
+                                          <ActionButton
+                                              size="small"
+                                              text="Details"
+                                              onClick={() => handleClosetDetailClick(d.id)}
+                                          />
+                                      </Grid>
+                            </Grid>
+                          </CardContent>
+                        </Card>
+                      </Grid>
                     ))}
                   </Grid>
-                  <Box align='center'>
-                      <AddNewClosetButton
-                          handleNewClosetClick={handleNewClosetClick}
-                      />
-                      <AddNewClosetDialog
-                      openDialog={openAddClosetDialog}
-                      setOpenDialog={setOpenAddClosetDialog}
-                      />
-                      <DeleteClosetDialog
-                        openDialog={openConfirmDeleteDialog}
-                        setOpenDialog={setOpenConfirmDeleteDialog}
-                        closetId={deletingClosetId}
-                        setClosets={setClosets}
-            />
+                  <Grid item>
+                    <AddNewClosetButton
+                        handleNewClosetClick={handleNewClosetClick}
+                    />
+                  </Grid>
+                  <Grid item>
+                    {/* Footer */}
+                    <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
+                      <Typography
+                        variant="subtitle1"
+                        align="center"
+                        color="text.secondary"
+                        component="p"
+                      >
+                        Project LifeList
+                      </Typography>
                     </Box>
+                    {/* End footer */}
+                  </Grid>
+                </Grid>
+                <AddNewClosetDialog
+                  openDialog={openAddClosetDialog}
+                  setOpenDialog={setOpenAddClosetDialog}
+                  />
+                <DeleteClosetDialog
+                  openDialog={openConfirmDeleteDialog}
+                  setOpenDialog={setOpenConfirmDeleteDialog}
+                  closetId={deletingClosetId}
+                  setClosets={setClosets}
+                />
             </Container>
-          </main>
-          {/* Footer */}
-          <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
-            <Typography
-              variant="subtitle1"
-              align="center"
-              color="text.secondary"
-              component="p"
-            >
-              Project LifeList
-            </Typography>
-          </Box>
-          {/* End footer */}
+          </>
         </ThemeProvider>
       );
 };
