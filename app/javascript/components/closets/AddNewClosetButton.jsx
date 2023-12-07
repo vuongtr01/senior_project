@@ -5,11 +5,11 @@ const AddNewClosetButton = (props) => {
     const { handleNewClosetClick } = props;
 
     return (
-        <Button
+        <Button variant="contained" style={{maxWidth: '100%', maxHeight: '50px', minWidth: '75%', minHeight: '50px'}}
                 key="new_closet"
                 onClick={handleNewClosetClick}
             >
-                Add new closet
+                ADD NEW CLOSET
         </Button>
     )
 };

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Box from '@mui/material/Box';
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import StandardTheme from "./common/StandardTheme";
 import NavBar from "./common/NavBar";
@@ -26,6 +27,11 @@ const ClosetsIndex = () => {
                     actionButton={actionButtons}
                 />
                 <ListItems />
+                <Box display="flex" justifyContent="center" alignItems="center">
+                    <AddNewItemButton
+                        handleNewItemClick={handleNewItemClick}
+                    />
+                </Box>
             </ThemeProvider>
         </StyledEngineProvider>
     );
