@@ -16,11 +16,12 @@ gem 'pg_search'
 
 # Deployment
 gem "capistrano"
-gem "capistrano3-puma", "6.0.0.beta1"
+gem "capistrano3-puma", "5.2.0"
 gem "capistrano-rails", require: false
 gem "capistrano-bundler", require: false
 gem "capistrano-rvm"
 gem "capistrano-rbenv"
+gem 'sd_notify', '~> 0.1.0'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -91,5 +92,4 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-
 end

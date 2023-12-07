@@ -1,8 +1,15 @@
 # Change these
-server '18.220.148.248', port: 22, roles: [:web, :app, :db], primary: true
+server '18.219.86.131', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:vuongtr01/senior_project.git'
 set :application,     'wolfpack'
+
+set :rbenv_type, :user 
+set :rbenv_ruby,      '3.2.2'
+# set :rbenv_ruby_dir,  '/home/ubuntu/.rbenv/versions/3.0.2'
+# set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+# set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+# set :rbenv_roles, :all # default value
 
 # If using Digital Ocean's Ruby on Rails Marketplace framework, your username is 'rails'
 set :user,            'ubuntu'
@@ -14,7 +21,7 @@ set :pty,             true
 set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
-set :deploy_to,       "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
+set :deploy_to,       "/home/#{fetch(:user)}/apps/#{fetch(:application)}/"
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
@@ -34,8 +41,10 @@ set :puma_systemctl_user, :system
 # set :keep_releases, 5
 
 ## Linked Files & Directories (Default None):
+set :linked_files, %w(config/master.key)
 # set :linked_files, %w{config/database.yml}
 # set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+append :rvm_map_bins, 'puma', 'pumactl'
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
@@ -62,6 +71,16 @@ namespace :deploy do
       end
     end
   end
+
+  # namespace :check do
+  #   before :linked_files, :set_master_key do
+  #     on roles(:app), in: :sequence, wait: 10 do
+  #       unless test("[ -f #{shared_path}/config/master.key ]")
+  #         upload! 'config/master.key', "#{shared_path}/config/master.key"
+  #       end
+  #     end
+  #   end
+  # end
 
   desc 'Initial Deploy'
   task :initial do
