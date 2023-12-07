@@ -51,7 +51,7 @@ const NavBar = (props) => {
             href={"/"}
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
+              display: { md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
@@ -72,7 +72,7 @@ const NavBar = (props) => {
             </Box>
           )}
         </Grid> */}
-        <Grid item xs={8} pt="2%">
+        <Grid item xs={8}>
           <SearchBar
             placeholder="search"
           />

@@ -26,6 +26,7 @@ const ClosetAutocomplete = (props) => {
     classes,
     value,
     setValue,
+    disable,
   } = props;
   const [options, setOptions] = useState([]);
   const [inputValue, setInputValue] = useState(value ? value.label : '');
@@ -65,6 +66,7 @@ const ClosetAutocomplete = (props) => {
     <Autocomplete
       fullWidth
       filterSelectedOptions
+      disabled={disable}
       filterOptions={filterOptions}
       inputValue={inputValue}
       value={value}
@@ -98,10 +100,12 @@ ClosetAutocomplete.propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   value: PropTypes.instanceOf(Object),
   setValue: PropTypes.func.isRequired,
+  disable: PropTypes.bool,
 };
 
 ClosetAutocomplete.defaultProps = {
     value: null,
+    disable: false,
   };
 
 export default withStyles(styles)(ClosetAutocomplete);

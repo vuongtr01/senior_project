@@ -122,6 +122,7 @@ const BulkCreateItems = (props) => {
                         <Divider variant="middle" className={classes.divider} />
                         {itemsData.map((it, index) => (
                             <ItemForm
+                                isNewItem={true}
                                 key={it.id}
                                 index={index}
                                 data={it}

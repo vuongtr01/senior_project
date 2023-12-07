@@ -1,5 +1,6 @@
 import React from "react";
 import withStyles from '@mui/styles/withStyles';
+import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
@@ -37,7 +38,7 @@ const styles = theme => ({
 
 const ItemForm = props => {
   const {
-      classes, index, data, setData, deleteData,
+      classes, index, data, setData, deleteData, isNewItem,
     } = props;
     const {
       id, name, buyDate, exprDate,
@@ -48,7 +49,7 @@ const ItemForm = props => {
   
   const isFirstRow = index === 0;
   return (
-    <Grid key={id} direction="column" container className={classes.details} justifyContent="center" alignItems="center">
+    <Grid direction="column" container className={classes.details} justifyContent="center" alignItems="center">
       <Grid item className={classes.heading} container justifyContent="flex-start" alignItems="center">
         <Grid item xs={6}>
           <Typography variant="h3" className={classes.wrapIcon}>
@@ -78,6 +79,7 @@ const ItemForm = props => {
       <ClosetRows
           value={closet}
           setValue={value => handleChange(value, 'closet')}
+          disable={isNewItem}
       />
       <DateTimePickers
           time={{ buy: buyDate, expr: exprDate }}
@@ -111,5 +113,18 @@ const ItemForm = props => {
     </Grid>
   )
 }
+
+ItemForm.propTypes = {
+  classes: PropTypes.instanceOf(Object).isRequired,
+  index: PropTypes.number.isRequired,
+  data: PropTypes.object.isRequired,
+  setData: PropTypes.func.isRequired,
+  deleteData: PropTypes.func.isRequired,
+  isNewItem: PropTypes.bool,
+};
+
+ItemForm.defaultProps = {
+    isNewItem: false,
+  };
 
 export default withStyles(styles)(ItemForm);

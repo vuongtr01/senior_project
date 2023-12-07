@@ -22,7 +22,7 @@ const styles = theme => ({
 
 const ClosetRow = (props) => {
   const {
-    classes,setValue, value,
+    classes,setValue, value, disable
   } = props;
   return (
     <Grid
@@ -35,6 +35,7 @@ const ClosetRow = (props) => {
       </Grid>
       <Grid item sm={7} xs={12} align="left">
         <ClosetAutocomplete
+          disable={disable}
           value={value}
           setValue={setValue}
         />

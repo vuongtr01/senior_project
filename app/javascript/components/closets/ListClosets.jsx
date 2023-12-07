@@ -122,7 +122,7 @@ const ListCloset = (props) => {
               {/* End hero unit */}
                 {/* <Grid container rowSpacing={1} columnSpacing={{ xs: 2, sm: 3, md: 4 }}> */}
                 <Grid container direction="column" justifyContent="center" alignItems="center">
-                  <Grid item container className={classes.container} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                  <Grid item container justifyContent="center" className={classes.container} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                     {closets.map((d) => (
                       <Grid key={d.id} item xs={12} md={3}>
                         <Card
