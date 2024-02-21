@@ -1,10 +1,12 @@
 import React from "react";
 import withStyles from '@mui/styles/withStyles';
+import { enqueueSnackbar } from "notistack";
 import axios from 'axios';
 import _isEmpty from 'lodash/isEmpty';
 import { isArray } from "lodash";
 import Grid from '@mui/material/Grid';
 import ActionButton from "../common/ActionButton";
+import PushSnackbarMessage from "../common/PushSnackbarMessage";
 
 const styles = theme => ({
 });
@@ -72,6 +74,11 @@ const SaveButtonGroup = (props) => {
             data,
           }).then((res) => {
             redirectPath = `/closets/${res.data.closet_id}`
+            PushSnackbarMessage(
+                enqueueSnackbar,
+                'Item was saved successfully',
+                'success',
+            );
             window.location.href = redirectPath;
           }).catch(({ response }) => {
             response.data.errors.forEach((d) => {

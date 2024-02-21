@@ -1,5 +1,6 @@
 import * as React from 'react';
 import axios from 'axios';
+import { enqueueSnackbar } from 'notistack';
 import moment from 'moment';
 import IconButton from '@mui/material/IconButton';
 import withStyles from '@mui/styles/withStyles';
@@ -10,7 +11,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import { SECONDARY_DARK_BLUE_COLOR } from '../common/Constants';
-import AxiosHeaders from '../../helpers/AxiosHeaders';
+import PushSnackbarMessage from '../common/PushSnackbarMessage';
 import { DATE_TIME_FORMAT } from '../common/Constants';
 
 const style = theme => ({
@@ -59,6 +60,11 @@ const ItemCard = (props) => {
             method,
           }).then((res) => {
             deleteItem(item);
+            PushSnackbarMessage(
+                enqueueSnackbar,
+                `Item ${name} was deleted`,
+                'success',
+            );
           }).catch(({ response }) => {
             response.data.errors.forEach((d) => {
               console.log(d);

@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import { enqueueSnackbar } from "notistack";
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import AxiosHeaders from "../../helpers/AxiosHeaders";
+import PushSnackbarMessage from "../common/PushSnackbarMessage";
 
 const DeleteClosetDialog = (props) => {
-    const { openDialog, setOpenDialog, closetId, setClosets } = props;
+    const { openDialog, setOpenDialog, setClosets, deletingCloset } = props;
     const handleClose = () => {
         setOpenDialog(false);
     };
 
     const handleDeleteCloset = () => {
-        const url = `/closets/${closetId}`;
+        const url = `/closets/${deletingCloset.id}`;
         const method = 'DELETE';
         const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content');
         axios.defaults.headers.common['X-CSRF-Token'] = csrfToken;
@@ -25,6 +26,11 @@ const DeleteClosetDialog = (props) => {
         }).then((res) => {
             setClosets(res.data.closets);
             setOpenDialog(false);
+            PushSnackbarMessage(
+                enqueueSnackbar,
+                `Closet ${deletingCloset.category} was deleted`,
+                'success',
+            );
         }).catch(({ response }) => {
             response.data.errors.forEach((d) => {
               console.log(d);

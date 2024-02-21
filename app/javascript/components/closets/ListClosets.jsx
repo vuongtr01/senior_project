@@ -42,7 +42,7 @@ const ListCloset = (props) => {
     const [closets, setClosets] = useState([]);
     const [openConfirmDeleteDialog, setOpenConfirmDeleteDialog] = useState(false);
     const [openAddClosetDialog, setOpenAddClosetDialog] = useState(false);
-    const [deletingClosetId, setDeletingClosetId] = useState(null);
+    const [deletingCloset, setDeletingCloset] = useState(null);
     const location = useLocation();
     const fetchClosets = async() => {
         const { data } = await axios({
@@ -67,9 +67,8 @@ const ListCloset = (props) => {
       setOpenAddClosetDialog(true);
   };
 
-    const handleDeleteCloset = (closetId) => {
-        console.log(closetId);
-        setDeletingClosetId(closetId);
+    const handleDeleteCloset = (closet) => {
+        setDeletingCloset(closet);
         setOpenConfirmDeleteDialog(true);
     }
 
@@ -148,7 +147,7 @@ const ListCloset = (props) => {
                                           <WarningButton
                                               size="small"
                                               text="Delete"
-                                              onClick={() => handleDeleteCloset(d.id)}   
+                                              onClick={() => handleDeleteCloset(d)}   
                                           />
                                       </Grid>
                                       <Grid item className={classes.actionButton}>
@@ -191,7 +190,7 @@ const ListCloset = (props) => {
                 <DeleteClosetDialog
                   openDialog={openConfirmDeleteDialog}
                   setOpenDialog={setOpenConfirmDeleteDialog}
-                  closetId={deletingClosetId}
+                  deletingCloset={deletingCloset}
                   setClosets={setClosets}
                 />
             </Container>
