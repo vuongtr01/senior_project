@@ -10,6 +10,7 @@ import TextFieldRow from "../common/TextFieldRow";
 import ClosetRows from "../common/ClosetRows";
 import DateTimePickers from "../common/DateTimePickers";
 import ItemAmountRow from "./ItemAmountRow";
+import AddNewFileButton from "./AddNewFileButton";
 
 const styles = theme => ({
     container: {
@@ -107,6 +108,7 @@ const ItemForm = props => {
           counter={amount}
           setCounter={newValue => handleChange(newValue, 'amount')}
       />
+      <AddNewFileButton />
       <Grid item>
           <Paper square variant="outlined" className={classes.connector} />
       </Grid>
