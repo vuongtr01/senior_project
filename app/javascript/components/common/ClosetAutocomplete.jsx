@@ -7,7 +7,6 @@ import TextField from '@mui/material/TextField';
 import Chip from '@mui/material/Chip';
 import { orange } from '@mui/material/colors';
 import _isNull from 'lodash/isNull';
-import AxiosHeaders from '../../helpers/AxiosHeaders';
 
 const styles = theme => ({
   textField: {
@@ -38,7 +37,6 @@ const ClosetAutocomplete = (props) => {
     axios({
       url: '/closets/autocomplete',
       params: { key },
-      headers: AxiosHeaders,
     }).then(({ data, status }) => {
       if (status === 200 && data.length > 0) {
         const closetsList = data.map((closet) => ({
