@@ -58,6 +58,7 @@ class ClosetsController < ApplicationController
     
 
     def show
+        puts 'show details'
         @closet = current_user.closets.find(params[:id])
         gon.closetInfo = {
             category: @closet.category,

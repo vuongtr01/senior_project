@@ -78,5 +78,36 @@ Then, open another terminal, run run front end part:
 yarn build --watch
 ```
 Go to your browser: localhost:3000
+
+## Testing
+1. For backend, we use Rspec.
+* To run unit tests for a specific file, from project root directory:
+```
+bundle exec rspec spec/path_to_file
+```
+* To run all unit tests, from project root directory:
+```
+bundle exec rspec spec
+```
+* The coverage file will be generated in the coverage folder. To see coverage:
+```
+open coverage/index.html
+```
+
+2. For frontend component unit test, we use Jest.
+* To run unit tests for each component:
+```
+yarn test path_to_file
+```
+
+* To run unit tests for all components:
+```
+yarn test
+```
+
+* To run unit tests and generate coverage:
+```
+yarn test --coverage
+```
 ## Deployment
 Coming soon

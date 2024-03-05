@@ -6,8 +6,8 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';;
-import Tooltip from '@mui/material/Tooltip';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import MenuItem from '@mui/material/MenuItem';
 import Grid from '@mui/material/Grid';
 import SearchBar from "./SearchBar";
@@ -15,10 +15,13 @@ import SearchBar from "./SearchBar";
 const styles = theme => ({
   container: {
     padding: '16px 8px 16px 8px',
+  },
+  leftButton: {
+    paddingRight: '8px',
   }
 })
 const NavBar = (props) => {
-  const { classes, actionButton } = props;
+  const { classes } = props;
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -38,6 +41,10 @@ const NavBar = (props) => {
         method: "DELETE",
       }).then((response) => {
         window.location.href = '/users/sign_in';});
+  }
+
+  const handleOpenNotification = () => {
+    console.log('noti');
   }
 
   return (
@@ -79,12 +86,15 @@ const NavBar = (props) => {
         </Grid>
         <Grid item xs={2} pr="20px">
           <Grid container justifyContent='flex-end' alignItems='center'>
+            <Grid item className={classes.leftButton}>
+              <IconButton onClick={handleOpenNotification} sx={{ p: 0 }}>
+                <NotificationsActiveIcon />
+              </IconButton>
+            </Grid>
             <Grid item>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <AccountCircleIcon />
-                </IconButton>
-              </Tooltip>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <AccountCircleIcon />
+              </IconButton>
             </Grid>
             <Menu
               sx={{ mt: '45px' }}
