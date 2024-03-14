@@ -44,14 +44,9 @@ const BulkCreateItems = (props) => {
     const { classes, formTitle, setValue } = props;
     const { itemInfo } = window.gon;
     const {
-        name,
-        buy_date: buyDate,
-        expr_date:exprDate,
-        amount,
-        location,
-        price,
-        image,
-        closet
+        name, buy_date: buyDate, expr_date:exprDate,
+        amount, location, price, image, closet,
+        imageFile, imageUrl, imageRemoteUrl,
     } = itemInfo
     
     const [itemsData, setItemsData] = useState([{
@@ -64,6 +59,9 @@ const BulkCreateItems = (props) => {
         image: image || '',
         price: price || '',
         closet: closet || null,
+        imageFile: imageFile || null,
+        imageUrl: imageUrl || null,
+        imageRemoteUrl: imageRemoteUrl || null,
       }]);
 
     const handleAddSlot = () => {
@@ -77,6 +75,9 @@ const BulkCreateItems = (props) => {
             image:'',
             price: '',
             closet: closet || null,
+            imageFile: null,
+            imageUrl: null,
+            imageRemoteUrl: null,
         };
 
         setItemsData([...itemsData, newSlot]);

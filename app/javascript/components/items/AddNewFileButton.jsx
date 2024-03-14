@@ -19,7 +19,6 @@ export default function InputFileUpload() {
   return (
     <Button
       component="label"
-      role={undefined}
       variant="contained"
       tabIndex={-1}
       startIcon={<CloudUploadIcon />}
