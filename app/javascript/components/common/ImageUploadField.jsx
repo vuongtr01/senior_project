@@ -75,7 +75,6 @@ const ImageDropField = (props) => {
 
   const { imageFile, imageUrl, imageRemoteUrl } = submittingData;
   console.log(submittingData);
-
   const onDrop = useCallback((acceptedFiles) => {
     if (_isUndefined(acceptedFiles) || acceptedFiles.length === 0) {
       PushSnackbarMessage(
