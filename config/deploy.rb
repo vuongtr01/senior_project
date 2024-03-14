@@ -1,5 +1,5 @@
 # Change these
-server '172.31.19.8', port: 22, roles: [:web, :app, :db], primary: true
+server '13.58.155.138', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:vuongtr01/senior_project.git'
 set :application,     'wolfpack'
