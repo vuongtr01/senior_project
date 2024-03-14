@@ -69,7 +69,7 @@ const ItemForm = props => {
         </Grid>
       </Grid>
       <TextFieldRow
-        placeholder="Give it a succint name"
+        placeholder="Item Name"
         value={name}
         questionTitle="Item Name"
         inputProps={{
@@ -87,7 +87,7 @@ const ItemForm = props => {
           setTime={(date, type) => handleChange(date, type)}
       />
       <TextFieldRow
-          placeholder="Where is it now!!"
+          placeholder="Where is it now?"
           value={location}
           questionTitle="Location"
           inputProps={{
@@ -96,12 +96,13 @@ const ItemForm = props => {
           setValue={value => handleChange(value, 'location')}
       />
       <TextFieldRow
-          placeholder="How much does it cost"
+          placeholder="How much did it cost?"
           value={price}
           questionTitle="Item Price"
           inputProps={{
           maxLength: 70,
           }}
+          style={{width: "80%"}}
           setValue={value => handleChange(value, 'price')}
       />
       <ItemAmountRow

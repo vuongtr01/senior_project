@@ -17,7 +17,11 @@ const styles = theme => ({
     padding: '16px 8px 16px 8px',
   },
   leftButton: {
-    paddingRight: '8px',
+    paddingBottom: '8px',
+  },
+  rightButton: {
+    paddingLeft: '8px',
+    paddingBottom: '8px',
   }
 })
 const NavBar = (props) => {
@@ -53,23 +57,22 @@ const NavBar = (props) => {
         <Grid item xs={2}>
           <Typography
             variant={"h6"}
-            noWrap
-            component={"a"}
-            href={"/"}
             sx={{
-              mr: 2,
               display: { md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
+              // letterSpacing: '.1rem',
               color: 'inherit',
-              textDecoration: 'none',
+              // textDecoration: 'none',
             }}
           >
-            <img src="https://i.imgur.com/fHltqt7.png" alt="logo" height={80} />
-            <Box sx={{display: {xs: "none", md: 'flex'}}}>
+            <a href="/" style = {{textDecoration: 'none'}}
+            >
+              <img src="https://i.imgur.com/4Yq5pRM.png" alt="logo" height={80} />
+            </a>
+            {/* <Box sx={{display: {xs: "none", md: 'flex'}, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'clip'}}>
               LifeList
-            </Box>
+            </Box> */}
           </Typography>
         </Grid>
         {/* <Grid item xs={3}>
@@ -79,7 +82,7 @@ const NavBar = (props) => {
             </Box>
           )}
         </Grid> */}
-        <Grid item xs={8}>
+        <Grid item xs={8} pl={1}>
           <SearchBar
             placeholder="search"
           />
@@ -91,7 +94,7 @@ const NavBar = (props) => {
                 <NotificationsActiveIcon />
               </IconButton>
             </Grid>
-            <Grid item>
+            <Grid item className={classes.rightButton}>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <AccountCircleIcon />
               </IconButton>
