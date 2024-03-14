@@ -9,16 +9,18 @@ import Typography from '@mui/material/Typography';
 import { DATE_TIME_FORMAT } from './Constants';
 
 const styles = theme => ({
-    dateTimeTextfield: {
-      textAlign: 'right',
-      padding: '8px 16px',
+    buyDateBox: {
+      padding: '8px 0px 8px 16px',
+    },
+    expireDateBox: {
+        padding: '0px 0px 0px 16px',
     },
     formQuestionTitle: {
       textAlign: 'right',
-      padding: '16px 16px',
+      padding: '8px 16px',
     },
     formRow: {
-      padding: '8px 0px',
+      padding: '0px 0px',
     },
 });
 
@@ -37,7 +39,7 @@ const DateTimePickers = (props) => {
                 <Grid item sm={3}>
                     <Typography variant="h4" className={classes.formQuestionTitle}>Buy date</Typography>
                 </Grid>
-                <Grid item sm={3} xs={12}>
+                <Grid item sm={3} xs={12} className={classes.buyDateBox}>
                     <DatePicker
                         label="MM/DD/YYYY"
                         variant="outlined"
@@ -47,9 +49,9 @@ const DateTimePickers = (props) => {
                     />
                 </Grid>
                 <Grid item sm={1}>
-                    <Typography variant="h4" className={classes.formQuestionTitle}>Expr date</Typography>
+                    <Typography variant="h4" className={classes.formQuestionTitle}>Expire date</Typography>
                 </Grid>
-                <Grid item sm={3} xs={12}>
+                <Grid item sm={3} xs={12} className={classes.expireDateBox}>
                     <DatePicker
                         label="MM/DD/YYYY"
                         variant="outlined"

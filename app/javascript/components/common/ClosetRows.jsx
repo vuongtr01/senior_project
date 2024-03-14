@@ -7,7 +7,7 @@ import ClosetAutocomplete from './ClosetAutocomplete';
 
 const styles = theme => ({
   textField: {
-    width: '100%',
+    width: '80%',
     padding: '0px 16px',
   },
   formRow: {
