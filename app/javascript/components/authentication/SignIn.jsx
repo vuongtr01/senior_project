@@ -35,7 +35,7 @@ const SignIn = () => {
         >
             <Box>
                 {/* <LockOutlinedIcon /> */}
-                <img src="https://i.imgur.com/fHltqt7.png" alt="logo" height={80} />
+                <img src="https://i.imgur.com/4Yq5pRM.png" alt="logo" height={80} />
             </Box>
             <Typography component="h1" variant="h5">
                 Sign in

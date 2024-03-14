@@ -8,6 +8,7 @@ import Counter from '../common/Counter';
 const styles = theme => ({
   buttonGroup: {
     paddingBottom: '16px',
+    paddingLeft: '16px',
   },
   formRow: {
     paddingTop: '8px 0px',
@@ -27,6 +28,7 @@ const ItemAmountRow = (props) => {
       container
       className={classes.formRow}
       justifyContent="flex-start"
+      paddingTop="8px"
     >
       <Grid item sm={3}>
         <Typography

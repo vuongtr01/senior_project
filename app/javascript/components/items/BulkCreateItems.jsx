@@ -31,9 +31,10 @@ const styles = theme => ({
         display: 'block',
         width: '100%',
         textAlign: 'left',
+        marginTop: '12px',
     },
     divider: {
-        margin: '0 16px 16px 16px',
+        margin: '12px 16px 16px 16px',
     },
     title: {
         padding: '8px 16px',
@@ -112,7 +113,7 @@ const BulkCreateItems = (props) => {
                                     {formTitle}
                                 </Typography>
                             </Grid>
-                            <Grid item xs={2}>
+                            <Grid item xs={2} minWidth="100px" paddingTop="12px">
                                 <SaveButtonGroup
                                     errors={{}}
                                     itemData={itemsData}
