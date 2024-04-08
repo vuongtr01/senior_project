@@ -89,15 +89,36 @@ const BulkCreateItems = (props) => {
         setItemsData(newItemsData);
     }
 
+    const handleChangeImage = (id, imageFile, imageUrl, imageRemoteUrl) => {
+        setItemsData(
+            (prevState) => {
+                const updatedItemsData = prevState.map((it) => {
+                    if (it.id === id) {
+                        return {
+                            ...it,
+                            imageFile: imageFile,
+                            imageUrl: imageUrl,
+                            imageRemoteUrl: imageRemoteUrl,
+                        };
+                    }
+                    return it;
+                });
+                return updatedItemsData;
+            }
+        )
+    }
+
     const handleItemDataChange = (id, value, field) => {
         const updatedItemsData = itemsData.map((it) => {
             if (it.id === id) {
-              return { ...it, [field]: value };
+                return { ...it, [field]: value };
             }
             return it;
           });
-          setItemsData(updatedItemsData);
+          setItemsData([...updatedItemsData]);
     };
+    console.log('itemData root: ');
+    console.log(itemsData);
     return (
         <Box p={3}>
             <Grid
@@ -130,6 +151,7 @@ const BulkCreateItems = (props) => {
                                 data={it}
                                 setData={handleItemDataChange}
                                 deleteData={handleDeleteSlot}
+                                handleChangeImage={handleChangeImage}
                             />
                         ))}
                         <Grid

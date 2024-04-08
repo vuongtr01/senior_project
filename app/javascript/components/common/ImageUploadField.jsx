@@ -71,10 +71,10 @@ const ImageDropField = (props) => {
     classes,
     handleChangeData,
     submittingData,
+    handleChangeImage,
   } = props;
 
   const { imageFile, imageUrl, imageRemoteUrl } = submittingData;
-  console.log(submittingData);
   const onDrop = useCallback((acceptedFiles) => {
     if (_isUndefined(acceptedFiles) || acceptedFiles.length === 0) {
       PushSnackbarMessage(
@@ -93,8 +93,7 @@ const ImageDropField = (props) => {
         'error',
       );
     } else {
-      handleChangeData(pendingFile, 'imageFile');
-      handleChangeData(URL.createObjectURL(pendingFile), 'imageUrl');
+      handleChangeImage(pendingFile, URL.createObjectURL(pendingFile), null);
     }
   }, []);
 
@@ -104,9 +103,7 @@ const ImageDropField = (props) => {
   });
 
   const handleDeleteImage = () => {
-    handleChangeData(null, 'imageFile');
-    handleChangeData(null, 'imageUrl');
-    handleChangeData(null, 'imageRemoteUrl');
+    handleChangeImage(null, null, null);
   };
 
   return (
@@ -122,9 +119,9 @@ const ImageDropField = (props) => {
           <Typography variant="h3" className={classes.formQuestionTitle}>Item Image</Typography>
         </Grid>
       )}
-      {(imageUrl || imageRemoteUrl) && (
+      {(imageUrl || imageRemoteUrl) ? (
         <Grid item>
-          <ImageListItem>
+          <ImageListItem  sx={{ width: 500, height: 450 }}>
             <img
               src={imageUrl || imageRemoteUrl}
               alt={imageFile ? imageFile.name : 'event image'}
@@ -146,62 +143,65 @@ const ImageDropField = (props) => {
             />
           </ImageListItem>
         </Grid>
+      ) : (
+        <Grid item xs={12} className={classes.dropzoneField}>
+          <div {...getRootProps()} className={classes.dropzone}>
+            <input
+              {...getInputProps()}
+              multiple={false}
+            />
+            <Grid
+              container
+              direction="row"
+              justifyContent="center"
+              className={classes.dropzoneContent}
+            >
+              <Grid item xs={2}>
+                <Grid container direction="column">
+                  <Grid item xs={12}>
+                    <CloudUploadOutlinedIcon className={classes.icon} />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography className={classes.dropzoneText}>
+                      Upload file
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={10}>
+                <Grid container direction="column" alignItems="center">
+                  {
+                    (imageFile && imageFile.size <= 1000 * 1000)
+                      ? (
+                        <Typography className={classes.uploadedText}>
+                          {FileNameAndSize(imageFile)}
+                        </Typography>
+                      )
+                      : (
+                        <>
+                          <Grid item xs={12}>
+                            <Typography className={classes.dropzoneText}>
+                              Drag and drop or choose a file to upload image
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Typography
+                              classes={{
+                                root: classnames(classes.dropzoneText, classes.greyText),
+                              }}
+                            >
+                              (1MB limited. Recommended size: 600x600)
+                            </Typography>
+                          </Grid>
+                        </>
+                      )
+                  }
+                </Grid>
+              </Grid>
+            </Grid>
+          </div>
+        </Grid>
       )}
-      <Grid item xs={12} className={classes.dropzoneField}>
-        <div {...getRootProps()} className={classes.dropzone}>
-          <input
-            {...getInputProps()}
-            multiple={false}
-          />
-          <Grid
-            container
-            direction="row"
-            justifyContent="center"
-            className={classes.dropzoneContent}
-          >
-            <Grid item xs={2}>
-              <Grid container direction="column">
-                <Grid item xs={12}>
-                  <CloudUploadOutlinedIcon className={classes.icon} />
-                </Grid>
-                <Grid item xs={12}>
-                  Select File
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item xs={10}>
-              <Grid container direction="column" alignItems="center">
-                {
-                  (imageFile && imageFile.size <= 1000 * 1000)
-                    ? (
-                      <Typography className={classes.uploadedText}>
-                        {FileNameAndSize(imageFile)}
-                      </Typography>
-                    )
-                    : (
-                      <>
-                        <Grid item xs={12}>
-                          <Typography className={classes.dropzoneText}>
-                            Drag and drop or choose a file to upload resume
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                          <Typography
-                            classes={{
-                              root: classnames(classes.dropzoneText, classes.greyText),
-                            }}
-                          >
-                            (1MB limited. Recommended size: 600x600)
-                          </Typography>
-                        </Grid>
-                      </>
-                    )
-                }
-              </Grid>
-            </Grid>
-          </Grid>
-        </div>
-      </Grid>
     </Grid>
   );
 };
@@ -210,6 +210,7 @@ ImageDropField.propTypes = {
   classes: PropTypes.instanceOf(Object).isRequired,
   handleChangeData: PropTypes.func.isRequired,
   submittingData: PropTypes.instanceOf(Object).isRequired,
+  handleChangeImage: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(ImageDropField);

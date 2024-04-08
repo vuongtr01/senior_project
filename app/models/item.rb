@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   include PgSearch::Model
   belongs_to :closet
+  mount_uploader :image, ImageUploader
 
   PERMITTED_ATTRS = [
     :id, :name, :buy_date, :expr_date, :amount, :location, :image, :price, :closet_id,

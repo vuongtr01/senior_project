@@ -11,7 +11,7 @@ const styles = theme => ({
     paddingLeft: '16px',
   },
   formRow: {
-    paddingTop: '8px 0px',
+    padding: '8px 0px',
   },
   formQuestionTitle: {
     textAlign: 'right',

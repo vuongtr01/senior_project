@@ -44,6 +44,7 @@ class ClosetsController < ApplicationController
     end
 
     def update
+        # binding.pry
         closet = current_user.closets.find(params[:closet][:id])
         json_data = { errors: [], closet_id: nil }
         status = :ok

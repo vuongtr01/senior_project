@@ -18,6 +18,7 @@ const SaveButtonGroup = (props) => {
     const buildFormData = () => {
         const submitData = new FormData();
         if (!isArray(itemData)) {
+            console.log('run item');
             const {
                 name,
                 buyDate,
@@ -27,6 +28,7 @@ const SaveButtonGroup = (props) => {
                 image,
                 price,
                 closet,
+                imageFile
             } = itemData;
             submitData.append('item[name]', name);
             submitData.append('item[amount]', amount);
@@ -43,10 +45,11 @@ const SaveButtonGroup = (props) => {
             if(location) {
                 submitData.append('item[location]', location);
             }
-            if(image) {
-                submitData.append('item[image]', image);
+            if(imageFile) {
+                submitData.append('item[image]', imageFile);
             }
         } else {
+            console.log('run array');
             submitData.append('closet[id]', closet.id);
             itemData.forEach((it, ind) => {
                 submitData.append(`closet[items_attributes][${ind}][name]`, it.name);
@@ -55,6 +58,9 @@ const SaveButtonGroup = (props) => {
                 submitData.append(`closet[items_attributes][${ind}][expr_date]`, it.exprDate);
                 submitData.append(`closet[items_attributes][${ind}][price]`, it.price);
                 submitData.append(`closet[items_attributes][${ind}][location]`, it.location);
+                if(it.imageFile) {
+                    submitData.append(`closet[items_attributes][${ind}][image]`, it.imageFile);
+                }
             })
         }
         return submitData;
@@ -89,6 +95,7 @@ const SaveButtonGroup = (props) => {
 
     const saveItemHandler = () => {
         if (isValid) {
+            console.log(itemData);
             const formData = buildFormData();
             submiting(formData);
         }

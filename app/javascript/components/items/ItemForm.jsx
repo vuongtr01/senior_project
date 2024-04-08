@@ -39,14 +39,14 @@ const styles = theme => ({
 
 const ItemForm = props => {
   const {
-      classes, index, data, setData, deleteData, isNewItem,
+      classes, index, data, setData, deleteData, isNewItem, handleChangeImage
     } = props;
     const {
       id, name, buyDate, exprDate,
       amount, location, price,
       closet,
     } = data;
-    const handleChange = (field, value) => setData(id, field, value);
+    const handleChange = (value, field) => setData(id, value, field);
   
   const isFirstRow = index === 0;
   return (
@@ -112,6 +112,7 @@ const ItemForm = props => {
       <ImageUploadField
         handleChangeData={handleChange}
         submittingData={data}
+        handleChangeImage={(imageFile, imageUrl, imageRemoteUrl) => handleChangeImage(id, imageFile, imageUrl, imageRemoteUrl)}
       />
       <Grid item>
           <Paper square variant="outlined" className={classes.connector} />
@@ -127,6 +128,7 @@ ItemForm.propTypes = {
   setData: PropTypes.func.isRequired,
   deleteData: PropTypes.func.isRequired,
   isNewItem: PropTypes.bool,
+  handleChangeImage: PropTypes.func.isRequired,
 };
 
 ItemForm.defaultProps = {
