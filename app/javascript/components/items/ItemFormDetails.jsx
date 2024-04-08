@@ -13,6 +13,7 @@ import ItemAmountRow from "./ItemAmountRow";
 import ClosetRows from "../common/ClosetRows";
 import SaveButtonGroup from "./SaveButtonGroup";
 import { YupError, YupErrorMessage } from "../common/YupErrorProcessing";
+import EditImageUpload from "../common/EditImageUpload";
 
 const styles = theme => ({
     gridContainer: {
@@ -50,7 +51,8 @@ const ItemFormDetails = (props) => {
         location,
         price,
         image,
-        closet
+        closet,
+        image_url,
     } = itemInfo
     const [errors, setErrors] = useState({});
     const [attemptedSubmission, setAttemptedSubmission] = useState(false);
@@ -68,6 +70,9 @@ const ItemFormDetails = (props) => {
         image: image || '',
         price: price || '',
         closet: closet || null,
+        imageFile: null,
+        imageUrl: image_url,
+        imageRemoteUrl: null,
       });
 
     const validationSchemaPublish = Yup.object({
@@ -167,6 +172,10 @@ const ItemFormDetails = (props) => {
                             <ItemAmountRow
                                 counter={itemData.amount}
                                 setCounter={newValue => handleItemDataChange(newValue, 'amount')}
+                            />
+                            <EditImageUpload
+                                handleItemDataChange={handleItemDataChange}
+                                submittingData={itemData}
                             />
                         </Grid>
                     </Paper>

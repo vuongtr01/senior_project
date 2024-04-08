@@ -24,7 +24,6 @@ const SaveButtonGroup = (props) => {
                 exprDate,
                 location,
                 amount,
-                image,
                 price,
                 closet,
                 imageFile
