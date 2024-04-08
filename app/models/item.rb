@@ -26,6 +26,10 @@ class Item < ApplicationRecord
     search
   end
 
+  def image_url
+    image.url
+  end
+
   def json_data
     as_json(only: [
       :id,
@@ -34,14 +38,13 @@ class Item < ApplicationRecord
       :buy_date,
       :expr_date,
       :amount,
-      :image,
-      :price
-    ]).merge({
+      :price,
+    ], methods: :image_url,).merge({
       'closet' => {
         'id' => closet.id,
         'value' => closet.category,
         'label' => closet.category,
-      }
+      },
     })
   end
 end

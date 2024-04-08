@@ -45,6 +45,7 @@ const ItemCard = (props) => {
         expr_date: exprDate,
         price,
         location,
+        image_url,
     } = item;
 
     const closetId = window.gon.closetInfo ? window.gon.closetInfo.closetId : null;
@@ -75,6 +76,8 @@ const ItemCard = (props) => {
         const url =`/items/${item.id}/edit`
         window.location.href = url;
     }
+    const hostUrl = window.location.origin;
+    const defaultImageSrc = "https://www.google.com/url?sa=i&url=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEN0IQhnN-J3JIFmo--6e22lk6pF6LOn1b4Q&usqp=CAUhttps%3A%2F%2Fwww.mapbox.com%2Fblog%2Fecommerce-or-brick-mortar&psig=AOvVaw3Ou5Eenuv-ClDk8Maec3BA&ust=1698416491826000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIje89T0k4IDFQAAAAAdAAAAABAD"
     return (
         <Paper
             className={classes.container}
@@ -82,7 +85,7 @@ const ItemCard = (props) => {
             <Grid container spacing={2}>
                 <Grid item xs={3}>
                     <ButtonBase>
-                        <img className={classes.image} alt="complex" src="https://www.google.com/url?sa=i&url=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEN0IQhnN-J3JIFmo--6e22lk6pF6LOn1b4Q&usqp=CAUhttps%3A%2F%2Fwww.mapbox.com%2Fblog%2Fecommerce-or-brick-mortar&psig=AOvVaw3Ou5Eenuv-ClDk8Maec3BA&ust=1698416491826000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIje89T0k4IDFQAAAAAdAAAAABAD" />
+                        <img className={classes.image} alt="complex" src={image_url ? `${hostUrl}${image_url}` : defaultImageSrc} />
                     </ButtonBase>
                 </Grid>
                 <Grid item xs={6}>

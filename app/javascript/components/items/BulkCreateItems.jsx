@@ -117,8 +117,6 @@ const BulkCreateItems = (props) => {
           });
           setItemsData([...updatedItemsData]);
     };
-    console.log('itemData root: ');
-    console.log(itemsData);
     return (
         <Box p={3}>
             <Grid

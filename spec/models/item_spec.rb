@@ -16,7 +16,7 @@ RSpec.describe Item, type: :model do
         "buy_date": item.buy_date,
         "expr_date": item.expr_date,
         "amount": item.amount,
-        "image": item.image,
+        "image_url": nil,
         "price": item.price,
         "closet": {
           "id": closet.id,

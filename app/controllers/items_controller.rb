@@ -23,9 +23,8 @@ class ItemsController < ApplicationController
                 :buy_date,
                 :expr_date,
                 :amount,
-                :image,
                 :price 
-            ])
+            ], methods: :image_url)
         else
             gon.items = current_user.items.map do |i|
                 i.as_json(only: [
@@ -36,9 +35,8 @@ class ItemsController < ApplicationController
                     :buy_date,
                     :expr_date,
                     :amount,
-                    :image,
                     :price 
-                ])
+                ], methods: :image_url)
             end
         end
     end
